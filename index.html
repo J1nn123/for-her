@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Love You Gelyn MAE - Elegant Celebration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f2f2f2;
+      font-family: 'Georgia', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 10;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: #9b1d20;
+      font-weight: bold;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 3s ease-out;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      margin-top: 30px;
+      background-color: #9b1d20;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background-color: #f7a8a8;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Balloon animation */
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 80px;
+      height: 110px;
+      border-radius: 50%;
+      background-color: rgba(154, 29, 32, 0.8);
+      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+      animation: float 7s ease-in-out infinite;
+    }
+
+    /* Keyframes for balloon floating */
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-350px) scale(1.1);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Fireworks */
+    .firework {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #ffcc00;
+      border-radius: 50%;
+      opacity: 0;
+      animation: explode 1s forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(3);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="message">I Love You MAE</h1>
+    <button onclick="startCelebration()">Celebrate</button>
+  </div>
+
+  <script>
+    // Function to change the color of the message
+    function changeColor() {
+      const message = document.getElementById('message');
+      const colors = ['#9b1d20', '#f7a8a8', '#d98c7d', '#ff6f61', '#e45c6f'];
+
+      // Randomly choose a color from the array
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      message.style.color = randomColor;
+    }
+
+    // Function to create elegant balloons
+    function createBalloons() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.style.left = `${Math.random() * window.innerWidth}px`;
+      document.body.appendChild(balloon);
+
+      // Remove balloon after animation
+      setTimeout(() => {
+        balloon.remove();
+      }, 7000);
+    }
+
+    // Function to create fireworks with soft elegance
+    function createFireworks(x, y) {
+      for (let i = 0; i < 15; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        firework.style.left = `${x + (Math.random() * 100 - 50)}px`;
+        firework.style.top = `${y + (Math.random() * 100 - 50)}px`;
+        firework.style.animationDelay = `${Math.random() * 0.5}s`;
+        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        document.body.appendChild(firework);
+
+        // Remove firework after it explodes
+        setTimeout(() => {
+          firework.remove();
+        }, 1000);
+      }
+    }
+
+    // Start the celebration when the button is clicked
+    function startCelebration() {
+      // Change message color
+      changeColor();
+
+      // Create balloons and fireworks
+      createBalloons();
+      createFireworks(window.innerWidth / 2, window.innerHeight / 3);
+    }
+  </script>
+</body>
+</html>
